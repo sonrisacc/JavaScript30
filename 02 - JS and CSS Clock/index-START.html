@@ -62,13 +62,46 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s ;
+      transition-timing-function: cubic-bezier(0.3, 2.72, 0.45, 0.94)
     }
 
   </style>
 
   <script>
+  function setDate() {
+  var date = new Date();
 
+  var curSec = date.getSeconds();
+  var secRotateDegree = 6 * curSec + 90;
 
-  </script>
+  var curMin = date.getMinutes();
+  var minRotateDegree = 6 * curMin + 90;
+
+  var curHour = date.getHours();
+  var hourRotateDegree = 6 * curHour + 90;
+
+  if (curSec === 0) {
+    document.querySelector('.second-hand').style.transition = 'all 0s';
+  }
+
+  document.querySelector('.second-hand').style.transition = 'all 0.05s';
+
+  document.querySelector(
+    '.second-hand'
+  ).style.transform = `rotate(${secRotateDegree}deg)`;
+
+  document.querySelector(
+    '.min-hand'
+  ).style.transform = `rotate(${minRotateDegree}deg)`;
+
+  document.querySelector(
+    '.hour-hand'
+  ).style.transform = `rotate(${hourRotateDegree}deg)`;
+}
+setInterval(setDate, 1000);
+</script>
 </body>
 </html>

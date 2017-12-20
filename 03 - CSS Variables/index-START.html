@@ -21,7 +21,17 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --spacing:10px;
+      --blur:10px;
+      --base:#ffc600;
+    }
 
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -45,7 +55,18 @@
   </style>
 
   <script>
-  </script>
+  let range = document.querySelectorAll('input');
+const eHandler = e => {
+  let unit = e.target.dataset.sizing;
+  let value = e.target.value + unit;
+  document.querySelector('img').style.setProperty(`--${this.name}`, value);
+};
+range.forEach(cur => {
+  cur.addEventListener('change', eHandler);
+  cur.addEventListener('mousemove', eHandler);
+});
+</script>
+
 
 </body>
 </html>
